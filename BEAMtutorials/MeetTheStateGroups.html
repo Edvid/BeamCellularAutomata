@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <div class="menu">
+            <div class="menulist">
+                <a href="index">Introduction</a>
+                <a href="MeetTheStateGroups" class="selected"> Meet the state groups! </a>
+                <a href="Gates"> Gates </a>
+                <a href="TimingBasedCircuitry">Timing Based Circuitry</a>    
+                <a href="ByteIdentityComparator"> Byte Identity Comparator</a>
+                <a href="IdentityComparatorArray">Identity Comparator Array</a>
+                <a href="TheSevenSegmentDisplay"> The 7 segment display</a>
+            </div>
+            <div>
+                <div><p>&#8214;</p></div>
+            </div>
+        </div>
+        <div>
+            <h1>
+                Meet The stategroups!
+            </h1>
+            <div>
+                <h3>
+                    The Vectors:
+                </h3>
+                <p>
+                    <img src="source/Vectors.gif" alt="Vectors" height="30" width="30"><br>
+                    these are the 9 vector states; 0-8. <br><br> 
+                    
+                    It is useful to imagine the states layed out as such.:
+                </p>
+                <table style="width: 250px">
+                    <tr>
+                        <td>
+                            <img src="source/ArrowForceDiagram.png" alt="Arrow force Diagram" height="90" width="90">
+                        </td>
+                        <td>
+                            <table class="ThreeByThree">
+                                <tr>
+                                    <td>NW</td>
+                                    <td>N</td>
+                                    <td>NE</td>
+                                </tr>
+                                <tr>
+                                    <td>W</td>
+                                    <td>C</td>
+                                    <td>E</td>
+                                </tr>
+                                <tr>
+                                    <td>SW</td>
+                                    <td>S</td>
+                                    <td>SE</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="ThreeByThree">
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>0</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    The Vectors represent a force which it applies to the neighbour cell in that direction. <br>
+                    E.g. Vector state 1 (which we also call the North Western Vector) will apply a North Western force to its North Western neighbour next generation. <br>
+                    Similarly, Vector state 2 (which we also call the North Vector) will apply a North force to its North Neighbour next step. etc...<br>
+                    <br>
+                    As this is a cellular Automaton, we determine a cells state using its neighbourhood, 
+                    rather than set the state of a neighbour given the center state. So we do the above-described in reserve.<br>
+                    <img src="source/ArrowInfluenceDiagram.png" alt="Arrow Influence Diagram" height="90" width="90">
+                    <br>
+                    We essentially figure out, if the neighbours apply forces to the center cell.
+                    E.g. if our north western neighbour is a south-east vector. (when we visit the other stategroups you'll see that it's not just Vectors that can apply these forces).<br>
+                    <br>
+                    <abbr title="Combination example of how E and N vectors meet">
+                        <img src="source/CombinationOfVectorsExample.gif" height="210" width="210">
+                    </abbr><br>
+                    Vectors may combine into new Vectors if multiple Vectors meet. 
+                    The resultant forces are then calculated and the corresponding vector-state is found. 
+                    The vectors are clamped to values of -1, 0, 1 on each axis to determine its direction and finally its (1 of 9 possible) states.
+                    I call the axes the N-axis and E-axis to not confuse which direction on a XY coordinate system makes for increasing or decreasing values along that axis.
+                    Because of the clamping of values, these axes can be considered a finite size, 
+                    having a point on the axis either <i>Positive, Neutral, or Negative</i><br>
+                    Therefore a cell whose south eastern neighbour has a north western Vector (+N, -E), 
+                    and a southern neighbour with a northern Vector (+N, øE), 
+                    will still result in a north western vector (+N + +N = +N, -E + øE = -E).<br>
+                    <abbr title="Combination example of how NW and N vectors meet">
+                        <img src="source/CombinationOfVectorsExample2.gif" height="210" width="210">
+                    </abbr><br>
+                </p>    
+            </div>
+            <div>
+                <h3>
+                    The Square:
+                </h3>
+                <p>
+                    <img src="source/Square.gif" alt="Square.gif" height="30" width="30"><br>
+                    The square has three possible states. <i>still, rising, and falling</i>. The last two states are 
+                    activated forms of the square. When activated, it will both light up and A diagonal line will appear across it.
+                    That diagonal line may either go from buttom-left to top-right (rising if read from left to right). or top-left
+                    to buttom-right (falling, if read from left to right). 
+                    The line ends in each of the two corners the square "will shoot arrows out of". 
+                    and it is activated by having 1 and only one incoming vector on either of its four corners (diagonally adjecent neighbour-cells).<br>
+                    <abbr title="Example of a square recieving vectors respectively from NW, NE, NE+SE, NW+SE">
+                        <img src="source/SquareExample.gif" height="210" width="210">
+                    </abbr><br>
+                    The square's edges does not influence the state of it nor can it change cells next to its edges. 
+                    <b><i>It is therefore a very efficient way of blocking arrow paths</i></b> which we will use extensively in later examples, 
+                    along side the diamond with very similar properties.<br>
+                    <abbr title="Example of a square blocking arrow path from E">
+                        <img src="source/SquareExample2.gif" height="210" width="210">
+                    </abbr><br> 
+                </p>
+            </div>
+            <div>
+                <h3>
+                    The Diamond:
+                </h3>
+                <p>
+                    <img src="source/Diamond.gif" alt="Diamond.gif" height="30" width="30"><br>
+                    The diamond too has three possible states. <i>still, flat, erect</i>. The last two states are too activation states.
+                    It too will light up and get either a horizontal (flat) or vertical (erect) line across. 
+                    The lines too represent the directions in which it "will shoot arrows out". It too is activated when 1 and only 1
+                    path is recieved from either of <i>its</i> four corners (the cell's neighbours that it shares an <i>edge</i> with).<br>
+                    Similar, right?<br>
+                    I'll share two more gifs that are 45 degree equivalents of the squares two examples. <br>
+                    <abbr title="Same as first Square example but for Diamond">
+                        <img src="source/DiamondExample.gif" height="210" width="210">
+                    </abbr><br><br>
+                    <abbr title="Same as second Square example but for Diamond">
+                        <img src="source/DiamondExample2.gif" height="210" width="210">
+                    </abbr><br>   
+                 </p>
+            </div>
+            <div>
+                <h3>
+                    The Beamer:
+                </h3>
+                <p>
+                    <img src="source/Beamer.gif" height="30" width="30"><br>
+                    The beamer "shoots out arrows in all directions". Not much more than that. You can force a beamer to essentially only 
+                    beam out in one direction, if you block off all other 7 paths with squares and diamonds as needed<br>
+                    <abbr title="Beamer that shoots out in every direction">
+                        <img src="source/BeamerExample.gif"  height="210" width="210">
+                    </abbr><br><br>
+                    <abbr title="Beamer that shoots out only south, with aid of squares and diamonds as blockers">
+                        <img src="source/BeamerExample2.gif" height="210" width="210">
+                    </abbr>
+                </p>
+            </div>
+            <div>
+                <h3>
+                    <i>I've lied to you:</i>
+                </h3>
+                <p>
+                    Well, I put my lies in quotation marks, so I hinted it wasn't the full story.
+                    So here's the very most formal explaination you'll get: <br>
+                    As for when I explained how we needed to think of the vectors applying forces to a center cell,
+                    rather than a center cell "setting" the state of neighbouring cells, we need to apply that same logic to squares, diamonds, and beamers.<br>
+                    Just like The North-Western Vector may apply a force to the center cell, if and only if that Vector is in the South-Eastern cell, and
+                    The North Vectr may apply a force to the center cell, if and only that Vector is in the Southern cell. Then: 
+                    <ol style="list-style-type: upper-roman">
+                        <li>
+                             The rising square may apply a force the center cell, if and only if it is either in the "North-Eastern" or "South-Western" cell.
+                        </li>
+                        <li>
+                            The falling square may apply a force the center cell, if and only if it is either in the "North-Western" or "South-Eastern" cell.
+                        </li>
+                        <li>
+                            The flat diamond may apply a force the center cell, if and only if it is either in the "Eastern" or "Western" cell.
+                        </li>
+                        <li>
+                            The erect diamond may apply a force the center cell, if and only if it is either in the "Northern" or "Southern" cell.
+                        </li>
+                        <li>
+                            The beamer shall always apply a force center cell.
+                        </li>
+                    </ol> 
+                    
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

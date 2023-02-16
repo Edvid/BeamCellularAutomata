@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="google-code-prettify/prettify.css">
+  <script type="text/javascript" src="google-code-prettify/prettify.js?skin=sunburst"></script>
+</head>
+<body onload="PR.prettyPrint()" style="margin-top: 0;">
+<pre class="prettyprint lang-java linenums">BufferedReader reader;
+PrintWriter writer;
+String[] lines;
+
+//all figures must be x14, y20
+String[] bridgeORLines = {
+  "2.I3LI7.",
+  "4.I2LI6.",
+  "5.I8.",
+  "4.I2L7.",
+  "6.I7.",
+  ".2I4.LI5.",
+  "2.I.I.L.L5.",
+  ".L5.OI5.",
+  ".IL3.LIL5.",
+  "5.L5.LI.",
+  "5.I.LIL4.",
+  "LIL2.L2.OI4.",
+  "IO2.I2.L.L4.",
+  "LILI.LI7.",
+  "5.IL.LI4.",
+  "7.I4.IL",
+  "6.I4.L2.",
+  "6.L.L.IL.L",
+  "6.IOI4.I",
+  "6.LIL5."
+
+};
+
+String[] bridgeLines = {
+  "14.",
+  "14.",
+  "14.",
+  "14.",
+  "14.",
+  "14.",
+  "14.",
+  "14.",
+  "2.I2L9.",
+  "4.I9.",
+  "5.I.LIL4.",
+  "LIL2.L2.OI4.",
+  "IO2.I2.L.L4.",
+  "LILI.LI7.",
+  "5.IL.LI4.",
+  "7.I2.IL2.",
+  "6.I4.L2.",
+  "6.L.L2.I2.",
+  "6.IOI5.",
+  "6.LIL5."
+};
+
+int vDistance = 85;
+void setup(){
+  reader = createReader("tableX.txt");
+  writer = createWriter("code.txt");
+  writer.println("x = 294, y = 21760, rule = Beam");
+  lines = new String[256];
+  for(int i = 0; i < 256; i++){
+    try {
+      lines[i] = reader.readLine();
+    } catch (IOException e) {
+      e.printStackTrace();
+      lines[i] = null;
+    }    
+  }
+  
+  for(int i = 0; i < 21760; i++){
+    if(i%85 >= 20) {
+      println(i/85 + "/256 : " + lines[i/85]);
+      i+=64;
+      writer.print("65$");
+    }
+    else{
+      for(int j = 0; j < 21; j++){
+        if(j == 0) writer.print("$");
+        char c = lines[(i/85)%lines.length].charAt(j);
+        if(c == '0') writer.print(bridgeLines[i%85]);
+        else if(c == '1') writer.print(bridgeORLines[i%85]);
+        else writer.print("14.");
+      }
+    }
+          
+  }
+  writer.print("!");
+  writer.close();
+  exit();
+}<pre>
+</body>
+</html>

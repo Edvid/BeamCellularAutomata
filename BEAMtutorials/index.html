@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <div style="margin-left: -12%; width: 8%; position: fixed">
+            <i style="color: grey;">/*psst, <br> 
+                <---------- there's a collapsed menu out here, <br>
+                it'll be on all other pages, but this reminder wont, <br>
+                don't forget it*/</i>
+        </div>
+        <div class="menu">
+            <div class="menulist">
+                <a href="index" class="selected">Introduction</a>
+                <a href="MeetTheStateGroups"> Meet the state groups! </a>
+                <a href="Gates"> Gates </a>
+                <a href="TimingBasedCircuitry">Timing Based Circuitry</a>    
+                <a href="ByteIdentityComparator"> Byte Identity Comparator</a>
+                <a href="IdentityComparatorArray">Identity Comparator Array</a>
+                <a href="TheSevenSegmentDisplay"> The 7 segment display</a>
+            </div>
+            <div>
+                <div><p>&#8214;</p></div>
+            </div>
+        </div>
+        
+        <h1>
+            Byte-wise Electric Arrow Machine! (BEAM) 
+        </h1>
+        <h2>
+            A Cellular Automaton! (CA)
+        </h2>
+        <div>
+            <h3>
+                Introduction:
+            </h3>
+            <p>
+                The <abbr title="Cellular Byte-wise Electric Arrow Machine Automaton">BEAM CA</abbr> is a Cellular Automaton developed by <i>Me</i> in Early February 2020, 
+                and a <a href="source/documents/Beam.rule">.rule file for Golly</a> in mid-February 2020. 
+                I personally think it's the easiest cellular automaton to get your head around when it comes to building circuitry. 
+                I hope to implement this in future games I develop, and hopefully even relatively small kids can get into the core mechanics of 
+                this CA, and make very small contraption without being confused. <br>It works with colliding beams of arrows to 
+                construct new beams which direction is determined by the resultant force of the beams that collided. There's a "square" and a "diamond" that works roughly the same way, 
+                but on each their <abbr title="Group of 4">quartet</abbr>. An then there's the "beamer" which shoots out arrows in all 8 directions. <br>
+                Expect a more formal discription on the page <a href="MeetTheStateGroups.html">Meet the State Groups!</a>. 
+            </p>
+        </div>    
+        <div>
+            <h3>
+                Motivation:
+            </h3>
+            <p>
+                With inspiration from both Minecraft's redstone mechanic and the incredible projects build with it, such as a <a href="https://www.youtube.com/watch?v=SbO0tqH8f5I">working computer</a>, 
+                and with inspiration from another cellular automaton <a href="https://www.quinapalus.com/wi-index.html">WireWorld</a> ; I decided to set out to make my own <abbr title="Cellular Automaton">CA</abbr>.
+                I had two main reasons for wanting to create my own CA. 
+            </p>
+            <ol style="list-style-type: upper-roman">
+                <li>I wanted to be able to implement a mechanism in future games I develop, that allows for turing complete machine builds, 
+                    much like the computers in Minecraft or build with WireWorld, but without ripping off those games/people.</li>
+                <li>I saw things in both Redstone and WireWorld that I personally found undesirable, were I to implement such things in future games I develop</li>
+                <ol style="list-style-type: lower-roman">
+                    <li>
+                        WireWorld has a much desireable few-possible-states (just 4), but is very unintuitive. 
+                        Although there are many tutorials out there, 
+                        and I have linked to my <a href="https://www.quinapalus.com/wi-index.html">favourite tutorial</a> on this page already,
+                        which would alleviate the unintuitiveness,
+                        I still found it rather unsatisfying that
+                        <a href="https://www.quinapalus.com/wires7.html">"WireWorld needed its electrons to come in spacings of at least 6, 
+                            for you to be able to construct all possible GATES"</a>.
+                    </li>
+                    <li>
+                        Redstone is a bit more intuitive in my opinion, although I may be biased as I, as a minecrafter, have more experience dealing with it, than WireWorld. 
+                        Redstone, however, is not designed to be very efficient as a CA, nor easily implemented in Golly. I will not be explaining all the mechanics of redstone, but I'll mention the main argument for 
+                        why that is the case.
+                        The redstone dust <abbr title="Think 3D cell, but Minecraft is more than just ">block</abbr> (the main "wire" of the redstone mechanics), drop off in power as it is further away from any power source (taxicab distance style). 
+                        The Redstone dust block has 16 different power states and its power is determined all within one game-tick of a power source turning on or off. To allow timing of all the other redstone 
+                        mechanics to stay proper, one would also need to determine a piece of redstone dust's power state, within one step in a CA program (like Golly). For that 
+                        reason, one would need to scan a 15x15 neighbourhood area for each redstone dust.
+                    </li>
+                </ol>
+            </ol>
+            <p>
+
+            </p>
+        </div>
+        <div>
+            <h3>
+                Terminology:
+            </h3>
+            <p>
+                Just a very little section about some Terminology I want to establish before we continue.
+            </p>
+            <ul>
+                <li>
+                    <b>Step:</b> I may use step as a synonym of "generation" throughout this document.
+                </li>
+                <li>
+                    <b>Stategroup:</b> There's a total 16 states in this CA. But there's only 4 stategroups. A stategroup is a collection of states that share the same behaviour in terms of
+                    determining which state it will be in the very next step. A cell whose state is in one of these stategroups, will never turn into a state outside of the stategroup.
+                    The stategroups are:
+                    <ul>
+                        <li>0 - 8. Vectors: These are the arrows that construct long strands of beams if they are uninterupted.</li>
+                        <li>9 - 11. Square: These states represent all the states a square can be in. Either Still, Rising, or Falling.</li>
+                        <li>12 - 14. Diamond: These states represent all the states a diamond can be in. Either Still, Flat, or <i>Erect</i>.</li>
+                        <li>15. Beamer: Notice there's only 1 state in this stategroup. That means a beamer stays a beamer forever, and nothing else turns into one.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Vector:</b> These are the first 9 states of our automaton. Their symbols include both the blank first (index 0: "still area") state, as well as 
+                    the 8 arrows. Both the still area, as well as the 8 arrows behave in the same way, when they determine what state they'll turn into 
+                    next step. Therefore we must consider them the same group, and we call them vectors (the still area being mathematically equivalent to the position vector (0, 0)).
+                </li>
+                <li>
+                     <b>Neighbours:</b> In this CA, we use Moore's Neighbourhood to determine the state that a cell will turn into. The center cell belongs to a certain stategroup, 
+                    and will never be anything outside of that stategroup. The Neighbours are the last 8 cells in the neighbourhood, that determine which state within the stategroup
+                    the current cell turns into.    
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

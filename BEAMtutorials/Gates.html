@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <div class="menu">
+            <div class="menulist">
+                <a href="index">Introduction</a>
+                <a href="MeetTheStateGroups"> Meet the state groups! </a>
+                <a href="Gates" class="selected"> Gates </a>
+                <a href="TimingBasedCircuitry">Timing Based Circuitry</a>    
+                <a href="ByteIdentityComparator"> Byte Identity Comparator</a>
+                <a href="IdentityComparatorArray">Identity Comparator Array</a>
+                <a href="TheSevenSegmentDisplay"> The 7 segment display</a>
+            </div>
+            <div>
+                <div><p>&#8214;</p></div>
+            </div>
+        </div>
+        <div>
+            <h1>
+                The Gates!
+            </h1>
+            <p>
+                Since we covered the basic rules of the CA in the previous chapter, I think we can gloss over this chapter at a little quicker pace.<br>
+                The patterns presented here are just one of many equally valid configerations that make the gates. 
+                These just happen to be the ones I've found to be the most compact:
+            </p>
+            <table class="Gates">
+                <tr>
+                    <th>Name:</th>
+                    <th>Pattern:</th>
+                    <th>Extended RLE format:</th>
+                    <th>Formal gate symbol:</th>
+                    <th>Truth table:</th>
+                </tr>
+                <tr>
+                    <td>
+                        AND
+                    </td>
+                    <td>
+                            <img src="source/AND.png" alt="AND image">
+                    </td>
+                    <td style= "background-color:white; text-align: start; vertical-align: top;"> 
+                        <p style="font-family: monospace, monospace; margin: 0px 0px 0px 0px; overflow-wrap: anywhere;">x = 3, y = 7, rule = Beam<br>
+                            I$L$.I$I$L.L$IOI$LIL!
+                        </p> 
+                    </td>
+                    <td>
+                        <img src="https://www.electrical-symbols.com/images/electronic-symbols/digital-electronic/and_1.png" alt="AND symbol">
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th>x</th>
+                                <th>y</th>
+                                <th>F</th>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        OR
+                    </td>
+                    <td>
+                            <img src="source/OR.png" alt="OR image">
+                    </td>
+                    <td style= "background-color:white; text-align: start; vertical-align: top;"> 
+                        <p style="font-family: monospace, monospace; margin: 0px 0px 0px 0px; overflow-wrap: anywhere;">x = 10, y = 8, rule = Beam<br>
+                            LILI$IO.L3.I$L.L.IL.L.I$5.LIL.L$2.I2.I.2IL$9.L$L.2I5.I$IL.I!
+                        </p> 
+                    </td>
+                    <td>
+                        <img src="https://www.electrical-symbols.com/images/electronic-symbols/digital-electronic/or_1.png" alt="OR symbol">
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th>x</th>
+                                <th>y</th>
+                                <th>F</th>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        XOR
+                    </td>
+                    <td>
+                            <img src="source/XOR.png" alt="XOR image">
+                    </td>
+                    <td style= "background-color:white; text-align: start; vertical-align: top;"> 
+                        <p style="font-family: monospace, monospace; margin: 0px 0px 0px 0px; overflow-wrap: anywhere;">x = 2, y = 5, rule = Beam<br>
+                            .I$.L$IL$.L$.I!
+                        </p> 
+                    </td>
+                    <td>
+                        <img src="https://www.electrical-symbols.com/images/electronic-symbols/digital-electronic/or-exclusive_1.png" alt="XOR symbol">
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th>x</th>
+                                <th>y</th>
+                                <th>F</th>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>0</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        NAND
+                    </td>
+                    <td>
+                            <img src="source/NAND.png" alt="NAND image">
+                    </td>
+                    <td style= "background-color:white; text-align: start; vertical-align: top;"> 
+                        <p style="font-family: monospace, monospace; margin: 0px 0px 0px 0px; overflow-wrap: anywhere;">x = 6, y = 9, rule = Beam <br>
+                            .I$.L.LIL$3.IOI$3.L.L$5.I$2.I$IL.I$2.LIL$2.I!
+                        </p> 
+                    </td>
+                    <td>
+                        <img src="https://www.electrical-symbols.com/images/electronic-symbols/digital-electronic/nand_1.png" alt="NAND symbol">
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th>x</th>
+                                <th>y</th>
+                                <th>F</th>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>0</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        NOR
+                    </td>
+                    <td>
+                            <img src="source/NOR.png" alt="NOR image">
+                    </td>
+                    <td style= "background-color:white; text-align: start; vertical-align: top;"> 
+                        <p style="font-family: monospace, monospace; margin: 0px 0px 0px 0px; overflow-wrap: anywhere;">x = 4, y = 7, rule = Beam <br>
+                            LIL$IOI$L.L2$3.I$2.2L$IL!
+                            </p> 
+                    </td>
+                    <td>
+                        <img src="https://www.electrical-symbols.com/images/electronic-symbols/digital-electronic/nor_1.png" alt="NOR symbol">
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th>x</th>
+                                <th>y</th>
+                                <th>F</th>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>0</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        XNOR
+                    </td>
+                    <td>
+                            <img src="source/XNOR.png" alt="XNOR image">
+                    </td>
+                    <td style= "background-color:white; text-align: start; vertical-align: top;"> 
+                        <p style="font-family: monospace, monospace; margin: 0px 0px 0px 0px; overflow-wrap: anywhere;">x = 5, y = 7, rule = Beam <br>
+                            3.I$3.L$LIL.L$IO$LIL.L$3.L$3.I!
+                            </p> 
+                    </td>
+                    <td>
+                        <img src="https://www.electrical-symbols.com/images/electronic-symbols/digital-electronic/xnor.png" alt="XNOR symbol">
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th>x</th>
+                                <th>y</th>
+                                <th>F</th>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table> <br>
+            <p>Some other necessities we need to cover:</p>
+            <table class="Gates">
+                <tr>
+                    <th>Name:</th>
+                    <th>Pattern:</th>
+                    <th>Extended RLE format:</th>
+                    <th>Formal gate symbol:</th>
+                    <th>Truth table:</th>
+                </tr>
+                <tr>
+                    <td>
+                        BRIDGE
+                    </td>
+                    <td>
+                            <img src="source/BRIDGE.png" alt="BRIDGE image">
+                    </td>
+                    <td style= "background-color:white; text-align: start; vertical-align: top;"> 
+                        <p style="font-family: monospace, monospace; margin: 0px 0px 0px 0px; overflow-wrap: anywhere;">x = 10, y = 10, rule = Beam <br>
+                            6.LIL$6.IOI$6.L.L$6.I$7.I$5.IL.LI$LILI.LI$IO2.I2.L.L$LIL2.L2.OI$5.I.L
+                            IL!
+                            </p> 
+                    </td>
+                    <td>
+                        <img src="source/BRIDGEsymbol.png" alt="BRIDGE symbol">
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th>x </th>
+                                <th>y </th>
+                                <th>x"</th>
+                                <th>y"</th>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        SWAPPER
+                    </td>
+                    <td>
+                            <img src="source/SWAPPER.png" alt="SWAPPER image">
+                    </td>
+                    <td style= "background-color:white; text-align: start; vertical-align: top;"> 
+                        <p style="font-family: monospace, monospace; margin: 0px 0px 0px 0px; overflow-wrap: anywhere;">x = 4, y = 14, rule = Beam<br>
+                            .LIL$.IOI$.L.L$I2.I$L.2L2$3.I$I2$2L.<wbr>L$I2.I$L.L$IOI$LIL!
+                            </p> 
+                    </td>
+                    <td>
+                        <img src="source/SWAPPERsymbol.png" alt="SWAPPER symbol">
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th>x </th>
+                                <th>y </th>
+                                <th>x"</th>
+                                <th>y"</th>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <p>Look at them all in action! (except the Swapper):</p>
+            
+            <video width="900" controls>
+            <source src="source/video/gates.mp4" type="video/mp4">
+            Failed to load video.
+            </video>
+        </div>
+    </body>
+</html>

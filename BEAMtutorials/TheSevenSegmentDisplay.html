@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <div class="menu">
+            <div class="menulist">
+                <a href="index">Introduction</a>
+                <a href="MeetTheStateGroups"> Meet the state groups! </a>
+                <a href="Gates"> Gates </a>
+                <a href="TimingBasedCircuitry">Timing Based Circuitry</a>    
+                <a href="ByteIdentityComparator"> Byte Identity Comparator</a>
+                <a href="IdentityComparatorArray">Identity Comparator Array</a>
+                <a href="TheSevenSegmentDisplay"  class="selected"> The 7 segment display</a>
+            </div>
+            <div>
+                <div><p>&#8214;</p></div>
+            </div>
+        </div>
+        <div>
+            <h1>
+                The 7 segment display!
+            </h1>
+            <h2>
+                Final tutorial
+            </h2>
+            <p>
+                Let's begin with designing just one of the 7 segments to begin with. <br>
+                <img class="pixelated" src="source/1_segment.gif" alt="Example of 1 segment" width="102"><br><br>
+                This segment takes about an eighth of a cycle to fill out, or empty itself. 
+                I judge this would be enough time to be able to make out what number is displayed at a given time.<br>
+                
+                <img src="source/7segmentDisplay.png" alt="Example of 7 segment" width="auto"> <br>
+                
+                <i>Looking like something, eh?</i> <br><br>
+                Now onto tying it up with the 7 inputs from our reader. <br>
+                <img src="source/7segmentDisplayConnectedDrawn.jpg" alt="Example of 7 segment and its connections to the reader, but drawn" height="457"><br>
+                and in Golly <br>
+                <iframe src="source/documents/7segmentDisplayConnected.htm" width="365" height="486"></iframe><br><br>
+                Then it's just 3 of these in a row <br>
+                <img src="source/7segmentDisplayConnected3.png" alt="Example of all 3 7-segment displays and their connections to the reader" height="457"><br><br>
+                The read signals from state 255, overlaps with state 0 and a fraction of state 1. So I extended the clock cycle time, by moving one of the columns back 500 pixels. 
+                The clock cycle is only this long because the byte state has to reach the bottom, turn on the very last Identity Comparator, and send the read signal all the way up again;
+                all before the Identity comparator for state 0, gets <i>its</i> signal (almost instantly) and sends <i>its</i> read signal up (also almost instantly).
+                With the 500 pixel gap, the number 0, is displayed incorrectly about as long as it is displayed correctly. 
+                You can make the clock cycle longer to cancel out the wrong display completely if you wish, but of course the counter will act more slowly like that <br>
+                <iframe src="source/documents/8bitCounterComplete2.htm" width="100%" height="566"></iframe><br><br>
+            </p>
+        </div>
+    </body>
+</html>

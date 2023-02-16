@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="source/documents/google-code-prettify/prettify.css">
+        <script type="text/javascript" src="source/documents/google-code-prettify/prettify.js?skin=sunburst"></script>
+    </head>
+    <body onload="PR.prettyPrint()">
+        <div class="menu">
+            <div class="menulist">
+                <a href="index">Introduction</a>
+                <a href="MeetTheStateGroups"> Meet the state groups! </a>
+                <a href="Gates"> Gates </a>
+                <a href="TimingBasedCircuitry">Timing Based Circuitry</a>    
+                <a href="ByteIdentityComparator"> Byte Identity Comparator</a>
+                <a href="IdentityComparatorArray" class="selected">Identity Comparator Array</a>
+                <a href="TheSevenSegmentDisplay"> The 7 segment display</a>
+            </div>
+            <div>
+                <div><p>&#8214;</p></div>
+            </div>
+        </div>
+        <div>
+            <h1>Identity Comparator Array & Reading off of it</h1>
+            <p>
+                This is it. The Identity Comparaty array complete with 256 8 bit bridges, 256 Default Identity comparators, 
+                and the neccesary NOT gates to make them Identity comparators to all possible states instead. 
+                E.g. (n==0, n==1, n==2 ... n==254, n==255)<br>
+                <iframe src="source/documents/IdentityComparatorArrayImage.htm" width="501" height="425"></iframe><br><br>
+                I copy&pasted our bridges with their default Identity Comparators <b>256 times.</b> 
+                Then wrote a short processing program to determine the position of the NOT gates.<br>
+                <div style="width: 50%;">
+                    <pre class="prettyprint lang-java linenums" style="white-space:pre-line;">String NOT = ".LIL$.IOI$IL.L$.L.LIL$.IL2.L$5.I";
+int emptyLines = 1;
+int addedNots = 0;
+void setup(){
+  println("x = 6, y = 6, rule = Beam");
+  for(int i = 0; i < 21752; i++){
+    emptyLines++;
+    int spanIndex = (i%85); //from 0 to 84 within a 8 bit bridge 
+    if(spanIndex > 70) continue;
+    int byteIndex = i/85;//which of the 256 8 bit bridges we're next to
+    if(spanIndex%10==0){
+      int bitIndex = spanIndex/10;
+      if((byteIndex & ( (char)128 >>> bitIndex)) <wbr>== (byte) 0){
+        print(emptyLines);
+        print('$');
+        print(NOT);
+        addedNots++;
+        if(addedNots%4==0) println();
+        emptyLines = 1;
+        i+=6;
+      }
+    }
+  }
+   print('!');
+   exit();
+}</pre>
+                </div>
+                
+                    <iframe src="source/documents/NOTgateArray" width="410" height="450" style="background-color: white;"></iframe><br>
+                <img src="source/IdentityComparatorArraySnippet.gif" alt="Snippet of the Identity Comparator Array's first 5 Identity Comparators in the works"><br><br>
+                Now we have to read from each of the 256 Identity Comparators to get the byte value and determine 
+                which of the 21 segments in the 3 7-segment-displays will be on at which times. 
+                For each of the 21 segments, we will take note of which bytes turn on said segment.<br><br><br><br>
+                
+                
+                Let's call all byte values that can turn on a given segment, for the segment's "ON states",
+                and that that does not turn it on, its "OFF states".<br><br>
+                For a given segment, its ON states will all be split in two, such that the beam
+                continues eastwards, and goes northwards too as to be read.<br> 
+                Only the ON state with the highest value will be without a bridge attached, and all states lower
+                than that will have a bridge (both ON and OFF states), so it can be passed all the way up to the 
+                top. Where other ON states split off and <i>do</i> have a bridge next to them, they will combine
+                in an OR gate, and continue being passed on together.<br>
+                <img src="source/readFromIdentityComparatorArray.jpg" width="30%" alt="Drawn example of how to read from the identity comparator array"><br>
+                #1: A hypothetical segment, being turned on by EITHER byte value 0,1, or 6<br>
+                #2: A hypothetical segment, being turned on by EITHER byte value 1, or 3 <br><br><br><br>
+
+                Our <i>real</i> segments, and their ON states, can be found in this <i>very extensive</i> truth table:<br><br>
+                We <b>ONLY</b> use the "common <b>cathode</b>"<br>
+
+                <iframe src="source/documents/Construction_of_8bit_7segement_decimal_display" width="550" height="600" style="background-color: white;"></iframe><br>
+                One can also use the "common anode" table to build the circuit described above, but with 3 key changes: <br>
+                <ol>
+                    <li>Read from/split the <i>OFF</i> states</li>
+                    <li>When combining the immediately split beam and bridged beam, use <i>AND</i> gates</li>
+                    <li>Add a NOT gate infront of each of the 21 segments we will be designing in next chapter</li>
+                </ol>
+                <br>
+                Here's our copy&paste code for our Identity comparator array <i>reader</i>, that was also contructed with the help of processing, 
+                    pasted into Golly, and re-copied as to make for the most optimal and compact code: <br>
+                <iframe src="source/documents/IdentityComparatorArrayReaderCode.html" width="515" height="450" style="background-color: white;"></iframe>
+                <iframe src="source/documents/IdentityComparatorArrayReader" width="585" height="450" style="background-color: white;"></iframe><br><br>
+                And that makes for this bad boy: <br>
+                <iframe src="source/documents/IdentityComparatorArrayReaderImage.htm" width="100%" height="425"></iframe><br><br>
+
+                now that we've set up the reader, we can finally get onto the <b>ACTUAL 7-SEGMENT DISPLAYS,</b> <i>the most visual part of our tutorial</i>
+            </p>
+            
+        </div>        
+    </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html style="background-color: rgba(0, 0, 0, 0);">
+    <head>
+        <link rel="stylesheet" type="text/css" href="../../style.css">
+    </head>
+    <body class="b" style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px">
+        <table class="Gates">
+            <tr>
+                <th>
+                    Name:
+                </th>
+                <th>
+                    Description:
+                </th>
+                <th>
+                    Layout:
+                </th>
+                <th>
+                    Animation:
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    XOR pulse
+                </td>
+                <td>
+                    Gets activated When input signal switches
+                </td>
+                <td>
+                    <img src="../XORPulse.png" alt="XOR Pulse Layout">
+                </td>
+                <td>
+                    <picture>
+
+                    </picture>
+                    <img src="../XORPulse.gif" alt="XOR Pulse Animation" height="229px" class="pixelated">
+                </td>
+            </tr>
+            <tr>
+                <td style="white-space: nowrap">
+                    AND pulse (<span style="text-decoration: overline;">x</span>+y)
+                </td>
+                <td>
+                    Gets activated only when input goes from LOW to HIGH. This is achieved by having inverted x, and delaying the breaking of x, 
+                    so that y reaches the gate, before x is broken. The longer the delay, the longer the pulse of this AND pulse will be.
+                </td>
+                <td>
+                    <img src="../ANDPulse.png" alt="AND Pulse Layout">
+                </td>
+                <td>
+                    <img src="../ANDPulse.gif" alt="AND Pulse Animation" height="421px" class="pixelated">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Delay
+                </td>
+                <td>
+                    Delays a signal
+                </td>
+                <td>
+                    <img src="../Delay.png" alt="Delay Layout">
+                </td>
+                <td>
+                    <img src="../DELAY.gif" alt="Delay Animation" height="353px" class="pixelated">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Clock
+                </td>
+                <td>
+                    A beamer with a delay attached to it, that periodically breaks the signal, creating a clock that sends out LOW and HIGH at equal lengths
+                </td>
+                <td>
+                    <img src="../CLOCK.png" alt="Clock Layout">
+                </td>
+                <td>
+                    <img src="../CLOCK.gif" alt="Clock Animation" height="499px" class="pixelated">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Flip flop
+                </td>
+                <td>
+                    An SR NOR latch flip flop, with output Q and its complimentary <span style="text-decoration: overline;">Q</span>. S for SET, R for RESET. When S recieves HIGH, 
+                    then the flip flop's Q is set to HIGH. When R recieves HIGH, the flip flop's Q is reset to LOW. <span style="text-decoration: overline;">Q</span> always act
+                    opposite of Q.
+                </td>
+                <td>
+                    ***
+                </td>
+                <td>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c6/R-S_mk2.gif" alt="Flip flop example from wikimedia">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Pulsed Switch
+                </td>
+                <td>
+                    A flip flop, with two AND gates attached to it's input. Both sharing a former input, and each having either Q or <span style="text-decoration: overline;">Q</span>,
+                    as to either SET or RESET depending on the state of the flip flop, from just a single input. An AND pulse (with inverted x) is added before this input, with a long delay on x.  
+                </td>
+                <td>
+                    <img src="../PulsedSwitch.png" alt="Pulsed Switch Layout">
+                </td>
+                <td>
+                    <img src="../PulsedSwitch.gif" alt="Pulsed Switch Animation" height="499px" class="pixelated">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    byte counter:
+                </td>
+                <td>
+                    A series of 8 Pulsed Switches in a row, with a clock at the beginning, making for an 8 bit counter that counts up once every clock cycle. 
+                </td>
+                <td>
+                    <img src="../8bitCounter.png" alt="8 bit Counter Layout">
+                </td>
+                <td>
+                    <img src="../8bitCounter.gif" alt="8bitCounterGIF" height="522px" class="pixelated">
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+

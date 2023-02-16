@@ -1,0 +1,749 @@
+@RULE Beam
+
+@TABLE
+
+n_states:16
+neighborhood:Moore
+symmetries:none
+
+#north west, anti-north west, north, anti-north etc.
+var nw={8, 11, 15}
+var anw={0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 12, 13, 14}
+var n={7, 14, 15}
+var an={0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13}
+var ne={6, 10, 15}
+var ane={0, 1, 2, 3, 4, 5, 7, 8, 9, 11, 12, 13, 14}
+var w={5, 13, 15}
+var aw={0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 14}
+var e={4, 13, 15}
+var ae={0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 14}
+var sw={3, 10, 15}
+var asw={0, 1, 2, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14}
+var s={2, 14, 15}
+var as={0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}
+var se={1, 11, 15}
+var ase={0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14}
+#any vector
+var v={0, 1, 2, 3, 4, 5, 6, 7, 8}
+#any square
+var sq={9, 10, 11}
+#any diamond
+var d={12, 13, 14}
+#any state at all (since variables are bound https://github.com/gollygang/ruletablerepository/wiki/TheFormat, I need at least 4 different any-states)
+var any0={0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
+var any1={0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
+var any2={0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
+var any3={0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
+
+#Order in which states are read
+#C,N,NE,E,SE,S,SW,W,NW,C"
+#C" being the output state to the center
+
+v, an, ane, ae, ase, as, asw, aw, anw, 0
+v, n, ane, ae, ase, as, asw, aw, anw, 7
+v, an, ne, ae, ase, as, asw, aw, anw, 6
+v, n, ne, ae, ase, as, asw, aw, anw, 6
+v, an, ane, e, ase, as, asw, aw, anw, 4
+v, n, ane, e, ase, as, asw, aw, anw, 6
+v, an, ne, e, ase, as, asw, aw, anw, 6
+v, n, ne, e, ase, as, asw, aw, anw, 6
+v, an, ane, ae, se, as, asw, aw, anw, 1
+v, n, ane, ae, se, as, asw, aw, anw, 4
+v, an, ne, ae, se, as, asw, aw, anw, 4
+v, n, ne, ae, se, as, asw, aw, anw, 6
+v, an, ane, e, se, as, asw, aw, anw, 1
+v, n, ane, e, se, as, asw, aw, anw, 4
+v, an, ne, e, se, as, asw, aw, anw, 4
+v, n, ne, e, se, as, asw, aw, anw, 6
+v, an, ane, ae, ase, s, asw, aw, anw, 2
+v, n, ane, ae, ase, s, asw, aw, anw, 0
+v, an, ne, ae, ase, s, asw, aw, anw, 4
+v, n, ne, ae, ase, s, asw, aw, anw, 6
+v, an, ane, e, ase, s, asw, aw, anw, 1
+v, n, ane, e, ase, s, asw, aw, anw, 4
+v, an, ne, e, ase, s, asw, aw, anw, 4
+v, n, ne, e, ase, s, asw, aw, anw, 6
+v, an, ane, ae, se, s, asw, aw, anw, 1
+v, n, ane, ae, se, s, asw, aw, anw, 1
+v, an, ne, ae, se, s, asw, aw, anw, 1
+v, n, ne, ae, se, s, asw, aw, anw, 4
+v, an, ane, e, se, s, asw, aw, anw, 1
+v, n, ane, e, se, s, asw, aw, anw, 1
+v, an, ne, e, se, s, asw, aw, anw, 1
+v, n, ne, e, se, s, asw, aw, anw, 4
+v, an, ane, ae, ase, as, sw, aw, anw, 3
+v, n, ane, ae, ase, as, sw, aw, anw, 5
+v, an, ne, ae, ase, as, sw, aw, anw, 0
+v, n, ne, ae, ase, as, sw, aw, anw, 7
+v, an, ane, e, ase, as, sw, aw, anw, 2
+v, n, ane, e, ase, as, sw, aw, anw, 0
+v, an, ne, e, ase, as, sw, aw, anw, 4
+v, n, ne, e, ase, as, sw, aw, anw, 6
+v, an, ane, ae, se, as, sw, aw, anw, 2
+v, n, ane, ae, se, as, sw, aw, anw, 2
+v, an, ne, ae, se, as, sw, aw, anw, 1
+v, n, ne, ae, se, as, sw, aw, anw, 4
+v, an, ane, e, se, as, sw, aw, anw, 1
+v, n, ane, e, se, as, sw, aw, anw, 1
+v, an, ne, e, se, as, sw, aw, anw, 1
+v, n, ne, e, se, as, sw, aw, anw, 4
+v, an, ane, ae, ase, s, sw, aw, anw, 3
+v, n, ane, ae, ase, s, sw, aw, anw, 3
+v, an, ne, ae, ase, s, sw, aw, anw, 2
+v, n, ne, ae, ase, s, sw, aw, anw, 0
+v, an, ane, e, ase, s, sw, aw, anw, 2
+v, n, ane, e, ase, s, sw, aw, anw, 2
+v, an, ne, e, ase, s, sw, aw, anw, 1
+v, n, ne, e, ase, s, sw, aw, anw, 4
+v, an, ane, ae, se, s, sw, aw, anw, 2
+v, n, ane, ae, se, s, sw, aw, anw, 2
+v, an, ne, ae, se, s, sw, aw, anw, 1
+v, n, ne, ae, se, s, sw, aw, anw, 1
+v, an, ane, e, se, s, sw, aw, anw, 1
+v, n, ane, e, se, s, sw, aw, anw, 1
+v, an, ne, e, se, s, sw, aw, anw, 1
+v, n, ne, e, se, s, sw, aw, anw, 1
+v, an, ane, ae, ase, as, asw, w, anw, 5
+v, n, ane, ae, ase, as, asw, w, anw, 8
+v, an, ne, ae, ase, as, asw, w, anw, 7
+v, n, ne, ae, ase, as, asw, w, anw, 7
+v, an, ane, e, ase, as, asw, w, anw, 0
+v, n, ane, e, ase, as, asw, w, anw, 7
+v, an, ne, e, ase, as, asw, w, anw, 6
+v, n, ne, e, ase, as, asw, w, anw, 6
+v, an, ane, ae, se, as, asw, w, anw, 2
+v, n, ane, ae, se, as, asw, w, anw, 0
+v, an, ne, ae, se, as, asw, w, anw, 4
+v, n, ne, ae, se, as, asw, w, anw, 6
+v, an, ane, e, se, as, asw, w, anw, 1
+v, n, ane, e, se, as, asw, w, anw, 4
+v, an, ne, e, se, as, asw, w, anw, 4
+v, n, ne, e, se, as, asw, w, anw, 6
+v, an, ane, ae, ase, s, asw, w, anw, 3
+v, n, ane, ae, ase, s, asw, w, anw, 5
+v, an, ne, ae, ase, s, asw, w, anw, 0
+v, n, ne, ae, ase, s, asw, w, anw, 7
+v, an, ane, e, ase, s, asw, w, anw, 2
+v, n, ane, e, ase, s, asw, w, anw, 0
+v, an, ne, e, ase, s, asw, w, anw, 4
+v, n, ne, e, ase, s, asw, w, anw, 6
+v, an, ane, ae, se, s, asw, w, anw, 2
+v, n, ane, ae, se, s, asw, w, anw, 2
+v, an, ne, ae, se, s, asw, w, anw, 1
+v, n, ne, ae, se, s, asw, w, anw, 4
+v, an, ane, e, se, s, asw, w, anw, 1
+v, n, ane, e, se, s, asw, w, anw, 1
+v, an, ne, e, se, s, asw, w, anw, 1
+v, n, ne, e, se, s, asw, w, anw, 4
+v, an, ane, ae, ase, as, sw, w, anw, 3
+v, n, ane, ae, ase, as, sw, w, anw, 5
+v, an, ne, ae, ase, as, sw, w, anw, 5
+v, n, ne, ae, ase, as, sw, w, anw, 8
+v, an, ane, e, ase, as, sw, w, anw, 3
+v, n, ane, e, ase, as, sw, w, anw, 5
+v, an, ne, e, ase, as, sw, w, anw, 0
+v, n, ne, e, ase, as, sw, w, anw, 7
+v, an, ane, ae, se, as, sw, w, anw, 3
+v, n, ane, ae, se, as, sw, w, anw, 3
+v, an, ne, ae, se, as, sw, w, anw, 2
+v, n, ne, ae, se, as, sw, w, anw, 0
+v, an, ane, e, se, as, sw, w, anw, 2
+v, n, ane, e, se, as, sw, w, anw, 2
+v, an, ne, e, se, as, sw, w, anw, 1
+v, n, ne, e, se, as, sw, w, anw, 4
+v, an, ane, ae, ase, s, sw, w, anw, 3
+v, n, ane, ae, ase, s, sw, w, anw, 3
+v, an, ne, ae, ase, s, sw, w, anw, 3
+v, n, ne, ae, ase, s, sw, w, anw, 5
+v, an, ane, e, ase, s, sw, w, anw, 3
+v, n, ane, e, ase, s, sw, w, anw, 3
+v, an, ne, e, ase, s, sw, w, anw, 2
+v, n, ne, e, ase, s, sw, w, anw, 0
+v, an, ane, ae, se, s, sw, w, anw, 3
+v, n, ane, ae, se, s, sw, w, anw, 3
+v, an, ne, ae, se, s, sw, w, anw, 2
+v, n, ne, ae, se, s, sw, w, anw, 2
+v, an, ane, e, se, s, sw, w, anw, 2
+v, n, ane, e, se, s, sw, w, anw, 2
+v, an, ne, e, se, s, sw, w, anw, 1
+v, n, ne, e, se, s, sw, w, anw, 1
+v, an, ane, ae, ase, as, asw, aw, nw, 8
+v, n, ane, ae, ase, as, asw, aw, nw, 8
+v, an, ne, ae, ase, as, asw, aw, nw, 7
+v, n, ne, ae, ase, as, asw, aw, nw, 7
+v, an, ane, e, ase, as, asw, aw, nw, 7
+v, n, ane, e, ase, as, asw, aw, nw, 7
+v, an, ne, e, ase, as, asw, aw, nw, 6
+v, n, ne, e, ase, as, asw, aw, nw, 6
+v, an, ane, ae, se, as, asw, aw, nw, 0
+v, n, ane, ae, se, as, asw, aw, nw, 7
+v, an, ne, ae, se, as, asw, aw, nw, 6
+v, n, ne, ae, se, as, asw, aw, nw, 6
+v, an, ane, e, se, as, asw, aw, nw, 4
+v, n, ane, e, se, as, asw, aw, nw, 6
+v, an, ne, e, se, as, asw, aw, nw, 6
+v, n, ne, e, se, as, asw, aw, nw, 6
+v, an, ane, ae, ase, s, asw, aw, nw, 5
+v, n, ane, ae, ase, s, asw, aw, nw, 8
+v, an, ne, ae, ase, s, asw, aw, nw, 7
+v, n, ne, ae, ase, s, asw, aw, nw, 7
+v, an, ane, e, ase, s, asw, aw, nw, 0
+v, n, ane, e, ase, s, asw, aw, nw, 7
+v, an, ne, e, ase, s, asw, aw, nw, 6
+v, n, ne, e, ase, s, asw, aw, nw, 6
+v, an, ane, ae, se, s, asw, aw, nw, 2
+v, n, ane, ae, se, s, asw, aw, nw, 0
+v, an, ne, ae, se, s, asw, aw, nw, 4
+v, n, ne, ae, se, s, asw, aw, nw, 6
+v, an, ane, e, se, s, asw, aw, nw, 1
+v, n, ane, e, se, s, asw, aw, nw, 4
+v, an, ne, e, se, s, asw, aw, nw, 4
+v, n, ne, e, se, s, asw, aw, nw, 6
+v, an, ane, ae, ase, as, sw, aw, nw, 5
+v, n, ane, ae, ase, as, sw, aw, nw, 8
+v, an, ne, ae, ase, as, sw, aw, nw, 8
+v, n, ne, ae, ase, as, sw, aw, nw, 8
+v, an, ane, e, ase, as, sw, aw, nw, 5
+v, n, ane, e, ase, as, sw, aw, nw, 8
+v, an, ne, e, ase, as, sw, aw, nw, 7
+v, n, ne, e, ase, as, sw, aw, nw, 7
+v, an, ane, ae, se, as, sw, aw, nw, 3
+v, n, ane, ae, se, as, sw, aw, nw, 5
+v, an, ne, ae, se, as, sw, aw, nw, 0
+v, n, ne, ae, se, as, sw, aw, nw, 7
+v, an, ane, e, se, as, sw, aw, nw, 2
+v, n, ane, e, se, as, sw, aw, nw, 0
+v, an, ne, e, se, as, sw, aw, nw, 4
+v, n, ne, e, se, as, sw, aw, nw, 6
+v, an, ane, ae, ase, s, sw, aw, nw, 3
+v, n, ane, ae, ase, s, sw, aw, nw, 5
+v, an, ne, ae, ase, s, sw, aw, nw, 5
+v, n, ne, ae, ase, s, sw, aw, nw, 8
+v, an, ane, e, ase, s, sw, aw, nw, 3
+v, n, ane, e, ase, s, sw, aw, nw, 5
+v, an, ne, e, ase, s, sw, aw, nw, 0
+v, n, ne, e, ase, s, sw, aw, nw, 7
+v, an, ane, ae, se, s, sw, aw, nw, 3
+v, n, ane, ae, se, s, sw, aw, nw, 3
+v, an, ne, ae, se, s, sw, aw, nw, 2
+v, n, ne, ae, se, s, sw, aw, nw, 0
+v, an, ane, e, se, s, sw, aw, nw, 2
+v, n, ane, e, se, s, sw, aw, nw, 2
+v, an, ne, e, se, s, sw, aw, nw, 1
+v, n, ne, e, se, s, sw, aw, nw, 4
+v, an, ane, ae, ase, as, asw, w, nw, 8
+v, n, ane, ae, ase, as, asw, w, nw, 8
+v, an, ne, ae, ase, as, asw, w, nw, 8
+v, n, ne, ae, ase, as, asw, w, nw, 8
+v, an, ane, e, ase, as, asw, w, nw, 8
+v, n, ane, e, ase, as, asw, w, nw, 8
+v, an, ne, e, ase, as, asw, w, nw, 7
+v, n, ne, e, ase, as, asw, w, nw, 7
+v, an, ane, ae, se, as, asw, w, nw, 5
+v, n, ane, ae, se, as, asw, w, nw, 8
+v, an, ne, ae, se, as, asw, w, nw, 7
+v, n, ne, ae, se, as, asw, w, nw, 7
+v, an, ane, e, se, as, asw, w, nw, 0
+v, n, ane, e, se, as, asw, w, nw, 7
+v, an, ne, e, se, as, asw, w, nw, 6
+v, n, ne, e, se, as, asw, w, nw, 6
+v, an, ane, ae, ase, s, asw, w, nw, 5
+v, n, ane, ae, ase, s, asw, w, nw, 8
+v, an, ne, ae, ase, s, asw, w, nw, 8
+v, n, ne, ae, ase, s, asw, w, nw, 8
+v, an, ane, e, ase, s, asw, w, nw, 5
+v, n, ane, e, ase, s, asw, w, nw, 8
+v, an, ne, e, ase, s, asw, w, nw, 7
+v, n, ne, e, ase, s, asw, w, nw, 7
+v, an, ane, ae, se, s, asw, w, nw, 3
+v, n, ane, ae, se, s, asw, w, nw, 5
+v, an, ne, ae, se, s, asw, w, nw, 0
+v, n, ne, ae, se, s, asw, w, nw, 7
+v, an, ane, e, se, s, asw, w, nw, 2
+v, n, ane, e, se, s, asw, w, nw, 0
+v, an, ne, e, se, s, asw, w, nw, 4
+v, n, ne, e, se, s, asw, w, nw, 6
+v, an, ane, ae, ase, as, sw, w, nw, 5
+v, n, ane, ae, ase, as, sw, w, nw, 8
+v, an, ne, ae, ase, as, sw, w, nw, 8
+v, n, ne, ae, ase, as, sw, w, nw, 8
+v, an, ane, e, ase, as, sw, w, nw, 5
+v, n, ane, e, ase, as, sw, w, nw, 8
+v, an, ne, e, ase, as, sw, w, nw, 8
+v, n, ne, e, ase, as, sw, w, nw, 8
+v, an, ane, ae, se, as, sw, w, nw, 3
+v, n, ane, ae, se, as, sw, w, nw, 5
+v, an, ne, ae, se, as, sw, w, nw, 5
+v, n, ne, ae, se, as, sw, w, nw, 8
+v, an, ane, e, se, as, sw, w, nw, 3
+v, n, ane, e, se, as, sw, w, nw, 5
+v, an, ne, e, se, as, sw, w, nw, 0
+v, n, ne, e, se, as, sw, w, nw, 7
+v, an, ane, ae, ase, s, sw, w, nw, 3
+v, n, ane, ae, ase, s, sw, w, nw, 5
+v, an, ne, ae, ase, s, sw, w, nw, 5
+v, n, ne, ae, ase, s, sw, w, nw, 8
+v, an, ane, e, ase, s, sw, w, nw, 3
+v, n, ane, e, ase, s, sw, w, nw, 5
+v, an, ne, e, ase, s, sw, w, nw, 5
+v, n, ne, e, ase, s, sw, w, nw, 8
+v, an, ane, ae, se, s, sw, w, nw, 3
+v, n, ane, ae, se, s, sw, w, nw, 3
+v, an, ne, ae, se, s, sw, w, nw, 3
+v, n, ne, ae, se, s, sw, w, nw, 5
+v, an, ane, e, se, s, sw, w, nw, 3
+v, n, ane, e, se, s, sw, w, nw, 3
+v, an, ne, e, se, s, sw, w, nw, 2
+v, n, ne, e, se, s, sw, w, nw, 0
+
+sq, any0, ane, any1, ase, any2, asw, any3, anw, 9
+sq, any0, ne, any1, ase, any2, asw, any3, anw, 11
+sq, any0, ane, any1, se, any2, asw, any3, anw, 10
+sq, any0, ne, any1, se, any2, asw, any3, anw, 9
+sq, any0, ane, any1, ase, any2, sw, any3, anw, 11
+sq, any0, ne, any1, ase, any2, sw, any3, anw, 9
+sq, any0, ane, any1, se, any2, sw, any3, anw, 9
+sq, any0, ne, any1, se, any2, sw, any3, anw, 9
+sq, any0, ane, any1, ase, any2, asw, any3, nw, 10
+sq, any0, ne, any1, ase, any2, asw, any3, nw, 9
+sq, any0, ane, any1, se, any2, asw, any3, nw, 9
+sq, any0, ne, any1, se, any2, asw, any3, nw, 9
+sq, any0, ane, any1, ase, any2, sw, any3, nw, 9
+sq, any0, ne, any1, ase, any2, sw, any3, nw, 9
+sq, any0, ane, any1, se, any2, sw, any3, nw, 9
+sq, any0, ne, any1, se, any2, sw, any3, nw, 9
+
+d, an, any0, ae, any1, as, any2, aw, any3, 12
+d, n, any0, ae, any1, as, any2, aw, any3, 13
+d, an, any0, e, any1, as, any2, aw, any3, 14
+d, n, any0, e, any1, as, any2, aw, any3, 12
+d, an, any0, ae, any1, s, any2, aw, any3, 13
+d, n, any0, ae, any1, s, any2, aw, any3, 12
+d, an, any0, e, any1, s, any2, aw, any3, 12
+d, n, any0, e, any1, s, any2, aw, any3, 12
+d, an, any0, ae, any1, as, any2, w, any3, 14
+d, n, any0, ae, any1, as, any2, w, any3, 12
+d, an, any0, e, any1, as, any2, w, any3, 12
+d, n, any0, e, any1, as, any2, w, any3, 12
+d, an, any0, ae, any1, s, any2, w, any3, 12
+d, n, any0, ae, any1, s, any2, w, any3, 12
+d, an, any0, e, any1, s, any2, w, any3, 12
+d, n, any0, e, any1, s, any2, w, any3, 12
+
+
+
+
+@NAMES
+
+0 still area
+1 north west vector
+2 north vector
+3 north east vector
+4 west vector
+5 east vector
+6 south west vector
+7 south vector
+8 south east vector
+9 still square
+10 rising square
+11 falling square
+12 diamond
+13 flat diamond
+14 erect diamond
+15 beamer
+
+@COLORS
+
+0 48 48 48
+1 255 255 0
+2 255 255 0
+3 255 255 0
+4 255 255 0
+5 255 255 0
+6 255 255 0
+7 255 255 0
+8 255 255 0
+9 0 192 192
+10 128 255 255
+11 128 255 255
+12 192 0 192
+13 255 128 255
+14 255 128 255
+15 255 255 192
+
+@ICONS
+
+XPM
+
+"7 105 2 1"
+
+". c #000000"
+"W c #FFFFFF"
+
+"......."
+".WWW..."
+".WW...."
+".W.W..."
+"....W.."
+".....W."
+"......."
+
+"......."
+"...W..."
+"..WWW.."
+"...W..."
+"...W..."
+"...W..."
+"......."
+
+"......."
+"...WWW."
+"....WW."
+"...W.W."
+"..W...."
+".W....."
+"......."
+
+"......."
+"......."
+"..W...."
+".WWWWW."
+"..W...."
+"......."
+"......."
+
+"......."
+"......."
+"....W.."
+".WWWWW."
+"....W.."
+"......."
+"......."
+
+"......."
+".....W."
+"....W.."
+".W.W..."
+".WW...."
+".WWW..."
+"......."
+
+
+"......."
+"...W..."
+"...W..."
+"...W..."
+"..WWW.."
+"...W..."
+"......."
+
+"......."
+".W....."
+"..W...."
+"...W.W."
+"....WW."
+"...WWW."
+"......."
+
+"......."
+".WWWWW."
+".W...W."
+".W...W."
+".W...W."
+".WWWWW."
+"......."
+
+"......."
+".WWWWW."
+".W..WW."
+".W.W.W."
+".WW..W."
+".WWWWW."
+"......."
+
+"......."
+".WWWWW."
+".WW..W."
+".W.W.W."
+".W..WW."
+".WWWWW."
+"......."
+
+"......."
+"...W..."
+"..W.W.."
+".W...W."
+"..W.W.."
+"...W..."
+"......."
+
+"......."
+"......."
+"..WWW.."
+"WWW.WWW"
+"..WWW.."
+"......."
+"......."
+
+"...W..."
+"...W..."
+"..WWW.."
+"..W.W.."
+"..WWW.."
+"...W..."
+"...W..."
+
+"......."
+".W.W.W."
+"..WWW.."
+".WW.WW."
+"..WWW.."
+".W.W.W."
+"......."
+
+
+XPM
+
+"15 225 2 1"
+". c #000000"
+"W c #FFFFFF"
+
+"..............."
+".WWWWWWWW......"
+".WWWWWW........"
+".WWWW.........."
+".WWWWW........."
+".WW.WWW........"
+".WW..WWW......."
+".W....WWW......"
+".W.....WWW....."
+"........WWW...."
+".........WWW..."
+"..........WWW.."
+"...........WWW."
+"............WW."
+"..............."
+
+"..............."
+".......W......."
+"......WWW......"
+".....WWWWW....."
+"....WWWWWWW...."
+"...WW.WWW.WW..."
+"...W..WWW..W..."
+"......WWW......"
+"......WWW......"
+"......WWW......"
+"......WWW......"
+"......WWW......"
+"......WWW......"
+".......W......."
+"..............."
+
+"..............."
+"......WWWWWWWW."
+"........WWWWWW."
+"..........WWWW."
+".........WWWWW."
+"........WWW.WW."
+".......WWW..WW."
+"......WWW....W."
+".....WWW.....W."
+"....WWW........"
+"...WWW........."
+"..WWW.........."
+".WWW..........."
+".WW............"
+"..............."
+
+"..............."
+"..............."
+"..............."
+".....WW........"
+"....WW........."
+"...WW.........."
+"..WWWWWWWWWWW.."
+".WWWWWWWWWWWWW."
+"..WWWWWWWWWWW.."
+"...WW.........."
+"....WW........."
+".....WW........"
+"..............."
+"..............."
+"..............."
+
+"..............."
+"..............."
+"..............."
+"........WW....."
+".........WW...."
+"..........WW..."
+"..WWWWWWWWWWW.."
+".WWWWWWWWWWWWW."
+"..WWWWWWWWWWW.."
+"..........WW..."
+".........WW...."
+"........WW....."
+"..............."
+"..............."
+"..............."
+
+"..............."
+"............WW."
+"...........WWW."
+"..........WWW.."
+".........WWW..."
+"........WWW...."
+".W.....WWW....."
+".W....WWW......"
+".WW..WWW......."
+".WW.WWW........"
+".WWWWW........."
+".WWWW.........."
+".WWWWWW........"
+".WWWWWWWW......"
+"..............."
+
+"..............."
+".......W......."
+"......WWW......"
+"......WWW......"
+"......WWW......"
+"......WWW......"
+"......WWW......"
+"......WWW......"
+"...W..WWW..W..."
+"...WW.WWW.WW..."
+"....WWWWWWW...."
+".....WWWWW....."
+"......WWW......"
+".......W......."
+"..............."
+
+"..............."
+".WW............"
+".WWW..........."
+"..WWW.........."
+"...WWW........."
+"....WWW........"
+".....WWW.....W."
+"......WWW....W."
+".......WWW..WW."
+"........WWW.WW."
+".........WWWWW."
+"..........WWWW."
+"........WWWWWW."
+"......WWWWWWWW."
+"..............."
+
+"..............."
+"..............."
+"..WWWWWWWWWWW.."
+"..W.........W.."
+"..W.........W.."
+"..W.........W.."
+"..W.........W.."
+"..W.........W.."
+"..W.........W.."
+"..W.........W.."
+"..W.........W.."
+"..W.........W.."
+"..WWWWWWWWWWW.."
+"..............."
+"..............."
+
+"..............."
+"..............."
+"..WWWWWWWWWWW.."
+"..W........WW.."
+"..W.......W.W.."
+"..W......W..W.."
+"..W.....W...W.."
+"..W....W....W.."
+"..W...W.....W.."
+"..W..W......W.."
+"..W.W.......W.."
+"..WW........W.."
+"..WWWWWWWWWWW.."
+"..............."
+"..............."
+
+"..............."
+"..............."
+"..WWWWWWWWWWW.."
+"..WW........W.."
+"..W.W.......W.."
+"..W..W......W.."
+"..W...W.....W.."
+"..W....W....W.."
+"..W.....W...W.."
+"..W......W..W.."
+"..W.......W.W.."
+"..W........WW.."
+"..WWWWWWWWWWW.."
+"..............."
+"..............."
+
+"..............."
+"......WWW......"
+".....W...W....."
+"....W.....W...."
+"...W.......W..."
+"..W.........W.."
+".W...........W."
+".W...........W."
+".W...........W."
+"..W.........W.."
+"...W.......W..."
+"....W.....W...."
+".....W...W....."
+"......WWW......"
+"..............."
+
+"..............."
+"......WWW......"
+".....W...W....."
+"....W.....W...."
+"...W.......W..."
+"..W.........W.."
+".W...........W."
+".W.WWWWWWWWW.W."
+".W...........W."
+"..W.........W.."
+"...W.......W..."
+"....W.....W...."
+".....W...W....."
+"......WWW......"
+"..............."
+
+"..............."
+"......WWW......"
+".....W...W....."
+"....W..W..W...."
+"...W...W...W..."
+"..W....W....W.."
+".W.....W.....W."
+".W.....W.....W."
+".W.....W.....W."
+"..W....W....W.."
+"...W...W...W..."
+"....W..W..W...."
+".....W...W....."
+"......WWW......"
+"..............."
+
+"..............."
+"..............."
+"..W....W....W.."
+"...W...W...W..."
+"....W..W..W...."
+".....WWWWW....."
+".....W...W....."
+"..WWWW...WWWW.."
+".....W...W....."
+".....WWWWW....."
+"....W..W..W...."
+"...W...W...W..."
+"..W....W....W.."
+"..............."
+"..............."
